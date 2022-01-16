@@ -13,13 +13,37 @@ const db = require('../config')
 // })
 
 // Using add
-db.collection("users").add({
+// db.collection("users").add({
+//   firstName: "Ahmad",
+//   lastName: "Taufiq"
+// })
+// .then((docRef) => {
+//   console.log("Document written with ID: ", docRef.id)
+// })
+// .catch((error) => {
+//   console.error("Error adding document: ", error)
+// })
+
+// Using batch
+const batch = db.batch()
+
+const array = [{
   firstName: "Ahmad",
   lastName: "Taufiq"
+}, {
+  firstName: "Gita Desviana",
+  lastName: "Ayu Febristy"
+}]
+
+array.forEach((doc) => {
+  var docRef = db.collection("users").doc()
+  batch.set(docRef, doc)
 })
-.then((docRef) => {
-  console.log("Document written with ID: ", docRef.id);
+
+batch.commit()
+.then(snapshot => {
+  console.log("Batch complete")
 })
-.catch((error) => {
-  console.error("Error adding document: ", error);
-});
+.catch(error => {
+  console.log("Batch failed")
+})
