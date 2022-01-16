@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "pindahin-e1ed8"
-  }
+    "default": "fir-4853a",
+    "staging": "fir-4853a"
+  },
+  "targets": {}
 }
